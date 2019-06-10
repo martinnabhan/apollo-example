@@ -1,0 +1,40 @@
+version: '3.5'
+
+services:
+  server: 
+    container_name: apollo-test.server
+    image: node:12.2
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /app/node_modules/ # ホストのnode_modules使わない
+    command: bash -c "yarn && yarn dev"
+    ports:
+      - 4000:4000
+    networks:
+      network:
+        aliases:
+          - server
+  database:
+    container_name: apollo-test.database
+    image: mariadb:10.0.24
+    environment:
+      - MYSQL_DATABASE=apollo
+      - MYSQL_USER=apollo
+      - MYSQL_PASSWORD=010101 
+      - MYSQL_ROOT_PASSWORD=010101
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      network:
+        aliases:
+          - database
+
+networks:
+  network:
+    name: apollo-test
+
+volumes:
+  database:
+    name: apollo-test.database
