@@ -5,10 +5,9 @@
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "generated",
-    "src"
-  ]
+  "include": ["src"],
+  "exclude": ["./generated/types.tsx"]
 }

@@ -3,17 +3,17 @@ import User from './User';
 import { QueryResolvers } from '../../generated/types';
 
 const userQueries: QueryResolvers = {
-  user: async (parent, { id }, context, info) => {
+  user: async (_, { id }) => {
     const userRepository = getRepository(User);
     const user = await userRepository.findOne(id);
-    
+
     if (!user) {
-      throw new Error('User not found');
+      throw new Error('ユーザが見つかりませんでした。');
     }
 
     return user;
   },
-  users: async (parent, args, context, info) => {
+  users: async () => {
     const userRepository = getRepository(User);
     const users = await userRepository.find();
 

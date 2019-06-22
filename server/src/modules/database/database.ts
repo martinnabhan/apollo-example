@@ -11,10 +11,7 @@ const createDatabaseConnection = async () => {
     password: '010101',
     database: 'apollo',
     synchronize: true,
-    entities: [
-      User,
-      Post,
-    ],
+    entities: [User, Post],
   });
 };
 

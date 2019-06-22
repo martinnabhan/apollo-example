@@ -4,11 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = (env) => {
-  const entry = [
-    './src/index.tsx',
-    'whatwg-fetch',
-  ];
+module.exports = () => {
+  const entry = ['./src/index.tsx', 'whatwg-fetch'];
 
   const devtool = 'inline-source-map';
 
@@ -81,6 +78,8 @@ module.exports = (env) => {
     host: '0.0.0.0',
     contentBase: `${__dirname}/public/`,
     overlay: true,
+    historyApiFallback: true,
+    disableHostCheck: true,
   };
 
   module.rules.push({

@@ -4,17 +4,19 @@ import { userSchema, userQueries, userMutations } from './modules/users';
 import { Resolvers } from './generated/types';
 import { postSchema, postQueries, postMutations } from './modules/posts';
 
-const initialTypeDefs = gql`
+const initialSchema = gql`
   type Query {
+    "空のタイプをextendできないため"
     _empty: String
   }
 
   type Mutation {
+    "空のタイプをextendできないため"
     _empty: String
   }
 `;
 
-const typeDefs = [initialTypeDefs, userSchema, postSchema];
+const typeDefs = [initialSchema, userSchema, postSchema];
 
 const resolvers: Resolvers = {
   Query: {
@@ -29,15 +31,14 @@ const resolvers: Resolvers = {
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers: resolvers as any,
+  resolvers,
 });
-
 
 const start = async () => {
   await createDatabaseConnection();
   const { url } = await server.listen();
 
-  console.log(`🚀 Server ready at ${url}`)
+  console.log(`🚀 Server ready at ${url}`);
 };
 
 start();

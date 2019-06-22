@@ -7,16 +7,20 @@ const User: React.FunctionComponent = () => {
 
   if (loading) {
     return <div>Loading...</div>;
-  };
+  }
 
   if (error) {
-    return <div>Error! {error.message}</div>;
-  };
+    return <div>{error.message}</div>;
+  }
 
   return (
-    <div>
-      <p>Id: {user.id}, Email: {user.email}</p>
-    </div>
+    <>
+      {user && (
+        <p>
+          Id: {user.id}, Email: {user.email}
+        </p>
+      )}
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import User from './User';
 import { MutationResolvers } from '../../generated/types';
 
 const userMutations: MutationResolvers = {
-  createUser: async (parent, { email }, context, info) => {
+  createUser: async (_, { email }) => {
     const userRepository = getRepository(User);
     const user = new User();
 
@@ -13,12 +13,12 @@ const userMutations: MutationResolvers = {
 
     return user;
   },
-  removeUser: async (parent, { id }, context, info) => {
+  removeUser: async (_, { id }) => {
     const userRepository = getRepository(User);
     const user = await userRepository.findOne(id);
 
     if (!user) {
-      throw new Error('User not found');
+      throw new Error('ユーザが見つかりませんでした。');
     }
 
     userRepository.delete(user);

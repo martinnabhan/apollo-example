@@ -4,17 +4,17 @@ import { Post } from '../posts';
 @Entity()
 export default class User {
   @PrimaryGeneratedColumn()
-  id!: string;
+  public id!: string;
 
   @Column()
-  email!: string;
+  public email!: string;
 
   @Column()
-  password!: string;
+  public password!: string;
 
   @OneToMany(() => Post, post => post.user, {
     eager: true,
     cascade: true,
   })
-  posts!: Post[];
+  public posts!: Post[];
 }

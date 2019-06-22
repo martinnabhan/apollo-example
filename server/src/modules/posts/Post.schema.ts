@@ -2,32 +2,32 @@ import { gql } from 'apollo-server';
 
 const schema = gql`
   type Post {
-    "The posts' id."
+    "投稿のID。"
     id: ID!
 
-    "The posts' title."
+    "投稿のタイトル。"
     title: String!
 
-    "The posts' content."
+    "投稿のコンテンツ。"
     content: String!
 
-    "The posts' user."
+    "投稿のユーザ。"
     user: User!
   }
 
   extend type Query {
-    "Get a post by ID."
+    "投稿をIDで取得。"
     post(id: ID!): Post!
 
-    "Get all posts."
+    "全ての投稿を取得。"
     posts: [Post!]!
   }
 
   extend type Mutation {
-    "Create a post."
+    "投稿の作成。"
     createPost(userId: ID!, title: String!, content: String!): Post
 
-    "Remove a post."
+    "投稿の削除。"
     removePost(id: ID!): Post
   }
 `;

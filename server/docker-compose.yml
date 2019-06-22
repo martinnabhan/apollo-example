@@ -4,10 +4,11 @@ services:
   server: 
     container_name: apollo-test.server
     image: node:12.2
-    working_dir: /app
+    working_dir: /server
     volumes:
-      - ./:/app
-      - /app/node_modules/ # ホストのnode_modules使わない
+      - ./:/server
+      - /server/node_modules/ # ホストのnode_modules使わない
+      - ../app/:/app # graphql-codegenのためにフロントも入れる
     command: bash -c "yarn && yarn dev"
     ports:
       - 4000:4000

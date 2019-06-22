@@ -2,29 +2,29 @@ import { gql } from 'apollo-server';
 
 const schema = gql`
   type User {
-    "The user's id."
+    "ユーザのID。"
     id: ID!
 
-    "The user's email."
+    "ユーザのメール。"
     email: String!
 
-    "The user's posts."
+    "ユーザの投稿。"
     posts: [Post]
   }
 
   extend type Query {
-    "Get a user by ID."
+    "ユーザをIDで取得。"
     user(id: ID!): User!
 
-    "Get all users."
+    "全てのユーザを取得。"
     users: [User!]!
   }
 
   extend type Mutation {
-    "Create a user."
+    "ユーザの作成。"
     createUser(email: String!): User
 
-    "Remove a user."
+    "ユーザの削除。"
     removeUser(id: ID!): User
   }
 `;

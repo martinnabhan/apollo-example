@@ -1,5 +1,5 @@
 import createDatabaseConnection from './database';
 
-export {
-  createDatabaseConnection,
-}
+export { createDatabaseConnection };
+
+export default createDatabaseConnection;

@@ -1,17 +1,17 @@
-import { MutationResolvers } from '../../generated/types';
 import { getRepository } from 'typeorm';
+import { MutationResolvers } from '../../generated/types';
 import Post from './Post';
 import { User } from '../users';
 
 const postMutations: MutationResolvers = {
-  createPost: async (parent, { userId, title, content }, context, info) => {
+  createPost: async (_, { userId, title, content }) => {
     const userRepository = getRepository(User);
     const postRepository = getRepository(Post);
     const user = await userRepository.findOne(userId);
     const post = new Post();
 
     if (!user) {
-      throw new Error('User not found');
+      throw new Error('ユーザが見つかりませんでした。');
     }
 
     post.title = title;
@@ -22,12 +22,12 @@ const postMutations: MutationResolvers = {
 
     return post;
   },
-  removePost: async (parent, { id }, context, info) => {
+  removePost: async (_, { id }) => {
     const postRepository = getRepository(Post);
     const post = await postRepository.findOne(id);
 
     if (!post) {
-      throw new Error('Post not found');
+      throw new Error('投稿が見つかりませんでした。');
     }
 
     postRepository.delete(post);

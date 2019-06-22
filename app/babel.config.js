@@ -1,4 +1,4 @@
-module.exports = (api) => {
+module.exports = api => {
   const presets = [
     ['@babel/typescript', { isTSX: true, allExtensions: true }],
     ['@babel/react', { development: true }],
